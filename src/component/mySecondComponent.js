@@ -5,8 +5,14 @@ class MySecondComponent extends Component {
     render() {
         return (
             <div>
-                This is My Second Component
-                <MyThirdComponent/>
+                UserName from Component 1:
+                {this.props.userName}<br/>
+                Address from Component 1:
+                {this.props.address}<br/>
+                Number from Component 1:
+                {this.props.number}<br/>
+                {this.props.test}<br/>
+                <button onClick={()=>this.props.callFromSecondComponent('Joshua')}>Click Here</button>
             </div>
         );
     }

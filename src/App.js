@@ -4,18 +4,14 @@
 import React, {Component} from 'react';
 import './App.css';
 import MyFirstComponent from './component/myFirstComponent';
+import MyThirdComponent from './component/myThirdComponent';
+import DigitalClock from './digitalClock.js';
 
 export default class App extends Component{
     render() {
       return (
         <div className="headerName">
-          <div style={{margin:'auto'}}> 
-            <p style={{fontSize:30,textAlign:'center'}}>React Day 1</p>
-            This is Joshua Tamang
-          </div>
-          <div>
-            {console.log('This is react class')}
-          </div>
+            {/* <MyThirdComponent name="Joshua"/> */}
             <MyFirstComponent/>
         </div>
       );
