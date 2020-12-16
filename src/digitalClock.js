@@ -3,11 +3,13 @@ import  React,{ Component } from "react";
 class DigitalClock extends Component{
     constructor(props){
         super(props);
+        console.log(this.props)
         this.state={
             date:new Date()
         }
     }
     componentDidMount() {
+        console.log(this.props.location)
         let self=this;
         this.timer=setInterval(function(){
             self.setState({

@@ -6,13 +6,18 @@ import './App.css';
 import MyFirstComponent from './component/myFirstComponent';
 import MyThirdComponent from './component/myThirdComponent';
 import DigitalClock from './digitalClock.js';
+import Routes from "./routes";
+import ApiCall from "./apiCall";
 
 export default class App extends Component{
     render() {
       return (
-        <div className="headerName">
-            {/* <MyThirdComponent name="Joshua"/> */}
-            <MyFirstComponent/>
+        // <div className="headerName">
+        //     {/* <MyThirdComponent name="Joshua"/> */}
+        //     <MyFirstComponent/>
+        // </div>
+        <div>
+            <Routes/>
         </div>
       );
     }
