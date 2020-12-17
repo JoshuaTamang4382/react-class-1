@@ -8,6 +8,8 @@ import MyThirdComponent from './component/myThirdComponent';
 import DigitalClock from './digitalClock.js';
 import Routes from "./routes";
 import ApiCall from "./apiCall";
+import {theme} from './theme';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 export default class App extends Component{
     render() {
@@ -17,7 +19,9 @@ export default class App extends Component{
         //     <MyFirstComponent/>
         // </div>
         <div>
+          <ThemeProvider theme={theme}>
             <Routes/>
+          </ThemeProvider>
         </div>
       );
     }
