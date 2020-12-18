@@ -11,6 +11,7 @@ import ApiCall from "./apiCall";
 import MySecondComponent from "./component/mySecondComponent";
 import MaterialHome from "./material-example/material-home";
 import TabUi from "./material-example/tabUI";
+import WeatherHome from "./weatherinfo/weatherHome";
 
   class Routes extends Component{
       render() {
@@ -35,6 +36,9 @@ import TabUi from "./material-example/tabUI";
                             </Route>
                             <Route path="/tab" exact>
                                 <TabUi />
+                            </Route>
+                            <Route path="/weather" exact>
+                                <WeatherHome />
                             </Route>
                         </Switch>
                     </Router>
