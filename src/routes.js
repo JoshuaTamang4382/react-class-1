@@ -12,6 +12,10 @@ import MySecondComponent from "./component/mySecondComponent";
 import MaterialHome from "./material-example/material-home";
 import TabUi from "./material-example/tabUI";
 import WeatherHome from "./weatherinfo/weatherHome";
+import MyFirstHook from "./react-hook/firstHook";
+import PrevState from "./component/prevState";
+import MyThirdHook from "./react-hook/thirdHook";
+import UserProfile from "./react-hook/userProfile";
 
   class Routes extends Component{
       render() {
@@ -39,6 +43,18 @@ import WeatherHome from "./weatherinfo/weatherHome";
                             </Route>
                             <Route path="/weather" exact>
                                 <WeatherHome />
+                            </Route>
+                            <Route path="/hook" exact>
+                                <MyFirstHook />
+                            </Route>
+                            <Route path="/inc/d/:id" exact>
+                                <PrevState />
+                            </Route>
+                            <Route path="/third/t/:id" exact>
+                                <MyThirdHook />
+                            </Route>
+                            <Route path="/user" exact>
+                                <UserProfile />
                             </Route>
                         </Switch>
                     </Router>
