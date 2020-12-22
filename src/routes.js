@@ -16,6 +16,10 @@ import MyFirstHook from "./react-hook/firstHook";
 import PrevState from "./component/prevState";
 import MyThirdHook from "./react-hook/thirdHook";
 import UserProfile from "./react-hook/userProfile";
+import TimerApp from "./timer/timerApp";
+import ApiCallExampleHook from "./react-hook/api-call-example";
+import EffectHookExample from "./react-hook/effectHook";
+import CustomDialog from "./timer/customDialog";
 
   class Routes extends Component{
       render() {
@@ -55,6 +59,18 @@ import UserProfile from "./react-hook/userProfile";
                             </Route>
                             <Route path="/user" exact>
                                 <UserProfile />
+                            </Route>
+                            <Route path="/effect" exact>
+                                <EffectHookExample />
+                            </Route>
+                            <Route path="/timer" exact>
+                                <TimerApp />
+                            </Route>
+                            <Route path="/dialog" exact>
+                                <CustomDialog />
+                            </Route>
+                            <Route path="/hook-api-call" exact>
+                                <ApiCallExampleHook />
                             </Route>
                         </Switch>
                     </Router>
