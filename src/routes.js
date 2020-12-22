@@ -20,6 +20,7 @@ import TimerApp from "./timer/timerApp";
 import ApiCallExampleHook from "./react-hook/api-call-example";
 import EffectHookExample from "./react-hook/effectHook";
 import CustomDialog from "./timer/customDialog";
+import PaginationPageNumber from "./pagination/pagination_pagenumber";
 
   class Routes extends Component{
       render() {
@@ -71,6 +72,9 @@ import CustomDialog from "./timer/customDialog";
                             </Route>
                             <Route path="/hook-api-call" exact>
                                 <ApiCallExampleHook />
+                            </Route>
+                            <Route path="/pageNumber" exact>
+                                <PaginationPageNumber />
                             </Route>
                         </Switch>
                     </Router>
