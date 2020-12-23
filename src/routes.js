@@ -21,6 +21,7 @@ import ApiCallExampleHook from "./react-hook/api-call-example";
 import EffectHookExample from "./react-hook/effectHook";
 import CustomDialog from "./timer/customDialog";
 import PaginationPageNumber from "./pagination/pagination_pagenumber";
+import PaginationLoadMore from "./pagination/pagination_loadmore";
 
   class Routes extends Component{
       render() {
@@ -75,6 +76,9 @@ import PaginationPageNumber from "./pagination/pagination_pagenumber";
                             </Route>
                             <Route path="/pageNumber" exact>
                                 <PaginationPageNumber />
+                            </Route>
+                            <Route path="/loadmore" exact>
+                                <PaginationLoadMore />
                             </Route>
                         </Switch>
                     </Router>
