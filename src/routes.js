@@ -22,6 +22,7 @@ import EffectHookExample from "./react-hook/effectHook";
 import CustomDialog from "./timer/customDialog";
 import PaginationPageNumber from "./pagination/pagination_pagenumber";
 import PaginationLoadMore from "./pagination/pagination_loadmore";
+import UserProfileList from "./react-hook/user-profile-list";
 
   class Routes extends Component{
       render() {
@@ -59,7 +60,7 @@ import PaginationLoadMore from "./pagination/pagination_loadmore";
                             <Route path="/third/t/:id" exact>
                                 <MyThirdHook />
                             </Route>
-                            <Route path="/user" exact>
+                            <Route path="/user-profile/:id" exact>
                                 <UserProfile />
                             </Route>
                             <Route path="/effect" exact>
@@ -79,6 +80,9 @@ import PaginationLoadMore from "./pagination/pagination_loadmore";
                             </Route>
                             <Route path="/loadmore" exact>
                                 <PaginationLoadMore />
+                            </Route>
+                            <Route path="/user-list" exact>
+                                <UserProfileList />
                             </Route>
                         </Switch>
                     </Router>

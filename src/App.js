@@ -10,9 +10,32 @@ import Routes from "./routes";
 import ApiCall from "./apiCall";
 import {theme} from './theme';
 import { ThemeProvider } from '@material-ui/core/styles';
+import firebase from 'firebase';
 // https://api.instantwebtools.net/v1/passenger?page=0&size=10
 
 export default class App extends Component{
+
+    constructor(props){
+      super(props)
+    }
+    
+    componentDidMount(){
+      this.initFireBase();
+    }
+
+    initFireBase=()=>{
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBRs_3VOBWMfKiVKVBRW7l9Bsl0ZTfH52g",
+        authDomain: "user-feedback-8ab03.firebaseapp.com",
+        projectId: "user-feedback-8ab03",
+        storageBucket: "user-feedback-8ab03.appspot.com",
+        messagingSenderId: "866285511275",
+        appId: "1:866285511275:web:3dafad4f0830022894072e",
+        measurementId: "G-HWNTL3QZH1"
+      };
+      firebase.initializeApp(firebaseConfig)
+    }
     render() {
       return (
         // <div className="headerName">
