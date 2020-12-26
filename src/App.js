@@ -17,6 +17,9 @@ export default class App extends Component{
 
     constructor(props){
       super(props)
+      this.state={
+        initializing:true
+      }
     }
     
     componentDidMount(){
@@ -34,7 +37,10 @@ export default class App extends Component{
         appId: "1:866285511275:web:3dafad4f0830022894072e",
         measurementId: "G-HWNTL3QZH1"
       };
-      firebase.initializeApp(firebaseConfig)
+      firebase.initializeApp(firebaseConfig);
+      this.setState({
+        initializing:false
+      })
     }
     render() {
       return (
@@ -43,9 +49,11 @@ export default class App extends Component{
         //     <MyFirstComponent/>
         // </div>
         <div>
+          {this.state.initializing?'Please wait':
           <ThemeProvider theme={theme}>
             <Routes/>
           </ThemeProvider>
+          }
         </div>
       );
     }

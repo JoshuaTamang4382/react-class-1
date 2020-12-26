@@ -23,6 +23,8 @@ import CustomDialog from "./timer/customDialog";
 import PaginationPageNumber from "./pagination/pagination_pagenumber";
 import PaginationLoadMore from "./pagination/pagination_loadmore";
 import UserProfileList from "./react-hook/user-profile-list";
+import Login from "./project1/login";
+import Chat from "./project1/chat";
 
   class Routes extends Component{
       render() {
@@ -83,6 +85,12 @@ import UserProfileList from "./react-hook/user-profile-list";
                             </Route>
                             <Route path="/user-list" exact>
                                 <UserProfileList />
+                            </Route>
+                            <Route path="/login" exact>
+                                <Login />
+                            </Route>
+                            <Route path="/chat" exact>
+                                <Chat />
                             </Route>
                         </Switch>
                     </Router>
