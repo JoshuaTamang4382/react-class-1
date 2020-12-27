@@ -1,6 +1,7 @@
-import { Button, CircularProgress, Grid, TextField } from '@material-ui/core';
+import { Button, Card, CircularProgress, Grid, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import firebase from "firebase";
+import { useParams } from 'react-router-dom';
 
 export default function Chat(){
 
@@ -8,6 +9,8 @@ export default function Chat(){
     const [gettingUser,setgettingUser]=useState(true);
     const [msg,setMsg]=useState();
     const [receivedMsg,setReceivedMsg]=useState([]);
+
+    let params = useParams();
 
     useEffect(()=>{
         firebase.auth().onAuthStateChanged((user) => {
@@ -28,7 +31,7 @@ export default function Chat(){
 
     const onWriteMsgToDb=async()=>{
         try {
-            await firebase.database().ref("chat").push({
+            await firebase.database().ref(params.chatId).push({
               content: msg,
               timestamp: Date.now(),
               uid: user.id
@@ -40,7 +43,7 @@ export default function Chat(){
 
     const getMsg=()=>{
         try {
-            firebase.database().ref("chat").on("value", snapshot => {
+            firebase.database().ref(params.chatId).on("value", snapshot => {
               let chats = [];
               snapshot.forEach((snap) => {
                 chats.push(snap.val());
@@ -55,16 +58,18 @@ export default function Chat(){
     const onSendMsg=()=>{
         onWriteMsgToDb().finally(function (res){
             console.log(res);
+        }).catch(function(error){
+            console.log(error);
         })
     }
 
     return(
         <div>
             {gettingUser? <CircularProgress/>:
-            <div>
-                <h1>Welcome {user.email}</h1>
+            <div style={{margin:20}}>
+                <Card style={{padding:20}}>
                 <div>
-                    <div>
+                    <div className={receivedMsg.uid==user.id?"my-msg":"other-msg"}>
                         {receivedMsg.length?
                         receivedMsg.map((item)=>
                         <p>{item.content}</p>
@@ -75,7 +80,7 @@ export default function Chat(){
                         <Grid item xs="9" sm="9">
                             <TextField 
                                 id="msg" 
-                                label="Enter Name" 
+                                label="Enter Message" 
                                 color="secondary"
                                 variant="filled"
                                 helperText="Please Enter Message"
@@ -100,6 +105,7 @@ export default function Chat(){
                         </Grid>
                     </Grid>
                 </div>
+                </Card>
             </div>
             }
         </div>

@@ -44,3 +44,6 @@ class FormExample extends Component {
 
 export default FormExample;
 
+//Making Chat App:
+//User can register for chat
+//We can select among Registered user and start out chat

@@ -25,6 +25,7 @@ import PaginationLoadMore from "./pagination/pagination_loadmore";
 import UserProfileList from "./react-hook/user-profile-list";
 import Login from "./project1/login";
 import Chat from "./project1/chat";
+import ChatAppHome from "./chat-app/chat-app-home";
 
   class Routes extends Component{
       render() {
@@ -33,7 +34,8 @@ import Chat from "./project1/chat";
                     <Router>
                         <Switch>
                             <Route path="/" exact>
-                                <MyFirstComponent />
+                                {/* <MyFirstComponent /> */}
+                                <ChatAppHome/>
                             </Route>
                             <Route path="/clock" exact>
                                 <DigitalClock />
@@ -89,9 +91,12 @@ import Chat from "./project1/chat";
                             <Route path="/login" exact>
                                 <Login />
                             </Route>
-                            <Route path="/chat" exact>
+                            <Route path="/chat/:chatId" exact>
                                 <Chat />
                             </Route>
+                            {/* <Route path="/chat-home" exact>
+                                <ChatAppHome />
+                            </Route> */}
                         </Switch>
                     </Router>
               </div>
