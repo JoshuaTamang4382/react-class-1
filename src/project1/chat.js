@@ -1,7 +1,7 @@
-import { Button, Card, CircularProgress, Grid, TextField } from '@material-ui/core';
+import { Avatar, Button, Card, CardHeader, CircularProgress, Grid, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import firebase from "firebase";
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 export default function Chat(){
 
@@ -9,8 +9,10 @@ export default function Chat(){
     const [gettingUser,setgettingUser]=useState(true);
     const [msg,setMsg]=useState();
     const [receivedMsg,setReceivedMsg]=useState([]);
+    const [roomInfo,setRoomInfo]=useState();
 
     let params = useParams();
+    let history = useHistory();
 
     useEffect(()=>{
         firebase.auth().onAuthStateChanged((user) => {
@@ -19,22 +21,25 @@ export default function Chat(){
             user_obj.email=user.email;
             user_obj.photoURL=user.photoURL;
             user_obj.name=user.displayName;
-            setUser(user_obj);
             setgettingUser(false);
+            setUser(user_obj);
           })
           getMsg();
+          setRoomInfo(history.location.state.room);
     },[true])
 
     const handleChange=(event)=>{
+        console.log(event);
         setMsg(event.target.value);
     }
 
-    const onWriteMsgToDb=async()=>{
+    const onWriteMsgToDb = async () => {
         try {
             await firebase.database().ref(params.chatId).push({
               content: msg,
               timestamp: Date.now(),
-              uid: user.id
+              uid: user.id,
+              email: user.email
             });
           } catch (error) {
               console.log(error)
@@ -48,6 +53,7 @@ export default function Chat(){
               snapshot.forEach((snap) => {
                 chats.push(snap.val());
               });
+              console.log(chats);
               setReceivedMsg(chats);
             });
           } catch (error) {
@@ -57,7 +63,7 @@ export default function Chat(){
 
     const onSendMsg=()=>{
         onWriteMsgToDb().finally(function (res){
-            console.log(res);
+            setMsg('');
         }).catch(function(error){
             console.log(error);
         })
@@ -67,12 +73,33 @@ export default function Chat(){
         <div>
             {gettingUser? <CircularProgress/>:
             <div style={{margin:20}}>
+                <Card style={{marginBottom:20}}>
+                    <CardHeader
+                            avatar={
+                            <Avatar aria-label="recipe" src={roomInfo.image}>
+                                R
+                            </Avatar>
+                            }
+                            title={roomInfo.room_name}
+                            subheader={roomInfo.room_des}
+                        />
+                </Card>
                 <Card style={{padding:20}}>
                 <div>
-                    <div className={receivedMsg.uid==user.id?"my-msg":"other-msg"}>
+                    <div>
                         {receivedMsg.length?
                         receivedMsg.map((item)=>
-                        <p>{item.content}</p>
+                            <div>
+                                <p className={item.uid==user.id?"my-msg-time":"other-msg-time"}>
+                                    {item.email}
+                                </p>
+                                <p className={item.uid==user.id?"my-msg":"other-msg"}>
+                                    {item.content}
+                                </p>
+                                <p className={item.uid==user.id?"my-msg-time":"other-msg-time"}>
+                                    {new Date(item.timestamp).toTimeString()}
+                                </p>
+                            </div>
                         ):''
                         }
                     </div>
@@ -88,6 +115,11 @@ export default function Chat(){
                                 value={msg}
                                 error={false}
                                 disabled={false}
+                                onKeyPress={(event=>{
+                                    if(event.key=='Enter'){
+                                        onSendMsg();
+                                    }
+                                })}
                                 onChange={handleChange}
                                 fullWidth={true}
                             />

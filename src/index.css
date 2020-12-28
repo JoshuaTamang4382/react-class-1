@@ -13,18 +13,43 @@ code {
 }
 
 .my-msg{
-  background: #1c1e21;
+  background: #1a0a5f;
   color: #fff;
   padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
   border-radius: 10px;
-  float: right;
-  margin-top:10px
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
 }
 
 .other-msg{
-  background: #769729;
+  background: #1f7c8d00;
   color: #fff;
   padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+}
+
+.my-msg-time{
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-end;
+  color: black;
+  margin: 0px !important;
+}
+
+.other-msg-time{
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 10px;
+  color: black;
+  margin: 0px !important;
 }
