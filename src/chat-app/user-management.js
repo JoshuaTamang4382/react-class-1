@@ -16,26 +16,50 @@ export async function registerUser(userInfo){
 }
 
 export async function getUserList() {
-    const snapshot = await firebase.firestore().collection(REGISTER_USER).get();
-        return snapshot.docs.map(doc => doc);
+    const snapshot = await firebase.firestore()
+        .collection(REGISTER_USER).get();
+    return snapshot.docs.map(doc => doc);
 }
-
 export async function getChatRoomList() {
-    const snapshot = await firebase.firestore().collection(CHAT_ROOM).get();
-        return snapshot.docs.map(doc => doc);
+    const snapshot = await firebase.firestore()
+        .collection(CHAT_ROOM).get();
+    return snapshot.docs.map(doc => doc);
 }
 
-export async function createChatRoom(chat_room){
-    return new Promise(function (resolve,reject){
-        await firebase.firestore().collection(CHAT_ROOM).add({
-            room_name:chat_room.name,
-            room_id:chat_room.id,
-            room_des:chat_room.room_des,
-            room_image:chat_room.room_image
-        }).then(function (response){
-            resolve(response)
-        }).catch(function(error){
-            reject(error)
-        })
+export  function createChatRoom(chat_room) {
+   return new Promise(async function (resolve, reject) {
+       await firebase.firestore().collection(CHAT_ROOM).add({
+           room_name: chat_room.name,
+           room_id: chat_room.id,
+           room_image: chat_room.room_image,
+           room_desc: chat_room.room_desc,
+           room_theme:chat_room.room_theme
+       }).then(function (response) {
+            resolve(response);
+       }).catch(function (error) {
+          reject(error);
+
+       });
+   })
+
+
+}
+
+export  function updateChatRoom(chat_room,id) {
+    return new Promise(async function (resolve, reject) {
+        await firebase.firestore().collection(CHAT_ROOM).doc('/'+id).update({
+            room_name: chat_room.name,
+            room_id: chat_room.id,
+            room_image: chat_room.room_image,
+            room_desc: chat_room.room_desc,
+            room_theme:chat_room.room_theme
+        }).then(function (response) {
+            resolve(response);
+        }).catch(function (error) {
+            reject(error);
+
+        });
     })
+
+
 }

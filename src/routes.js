@@ -26,6 +26,8 @@ import UserProfileList from "./react-hook/user-profile-list";
 import Login from "./project1/login";
 import Chat from "./project1/chat";
 import ChatAppHome from "./chat-app/chat-app-home";
+import Todo from "./todo-app/todo";
+import TodoList from "./todo-app/todo-list";
 
   class Routes extends Component{
       render() {
@@ -97,6 +99,12 @@ import ChatAppHome from "./chat-app/chat-app-home";
                             {/* <Route path="/chat-home" exact>
                                 <ChatAppHome />
                             </Route> */}
+                            <Route path="/todo/:id" exact>
+                                <Todo />
+                            </Route>
+                            <Route path="/todo-list" exact>
+                                <TodoList />
+                            </Route>
                         </Switch>
                     </Router>
               </div>

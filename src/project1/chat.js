@@ -84,7 +84,7 @@ export default function Chat(){
                             subheader={roomInfo.room_des}
                         />
                 </Card>
-                <Card style={{padding:20}}>
+                <Card style={{padding:20,background:roomInfo.room_theme?roomInfo.room_theme:'#ffffff'}}>
                 <div>
                     <div>
                         {receivedMsg.length?
